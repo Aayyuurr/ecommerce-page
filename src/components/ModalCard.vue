@@ -2,7 +2,7 @@
 
     //import
         import {type direction } from '../types';
-
+        import {watch, ref, onMounted, nextTick} from 'vue';
     //types
     
     type modal= {
@@ -18,8 +18,12 @@
     const props=defineProps<modal>()
     //stores
     //refs
+    const elButton= ref<HTMLButtonElement | null>(null)
     //computed 
+    
     //wachers 
+    // watch props.isOpen if true focus on button 
+   
     //emits
     
     const emit = defineEmits<{
@@ -37,8 +41,19 @@
     }
     const TroggleModal = ():void=>{
         emit('toggle-modal')
-        console.log(props.isOpen)
     }
+    // lifecycle
+   onMounted(() => {
+        watch(() => props.isOpen, (isOpen) => {
+            if (isOpen) {
+            // Use nextTick to ensure the button is in the DOM
+            nextTick(() => {
+                elButton.value?.focus();
+            });
+            }
+        });
+    });
+    
 </script>
 <template>
     <div class="outer">
@@ -68,14 +83,12 @@
                 <img class="modalPicture"
                 :src="props.path"
                 :alt="props.name">
-            <button class="left" @click="nextPicture('left')"
-            
-            >
+            <button class="left" @click="nextPicture('right')" ref="elButton">
                 <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
 
             </button>
-            <button class="right" @click="nextPicture('right')"
-            autofocus
+            <button class="right" @click="nextPicture('left')"
+            
              
             >
                 <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>

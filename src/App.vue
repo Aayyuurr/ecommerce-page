@@ -91,6 +91,8 @@
         })
         index.value=indexItem
     }
+    //lifecycle
+    
 </script>
 
 <template>
