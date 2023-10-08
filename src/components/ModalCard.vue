@@ -16,7 +16,6 @@
     //props
     
     const props=defineProps<modal>()
-    console.log(props)
     //stores
     //refs
     //computed 
@@ -48,7 +47,9 @@
 
     </button>
     <div class="thumbnails">
-        <button v-for="(item,index) in props.listThumbnail" :key="index" @click="ChangeImage(item)">
+        <button v-for="(item,index) in props.listThumbnail" :key="index" @click="ChangeImage(item)"
+            
+        >
             <img :src="item" :alt="item" :class="[item===props.thubnail ? 'active' : '', 'thumbnail' ]" >
         </button>
     </div>
@@ -59,25 +60,58 @@
    
     <Teleport to="body">
 
-        <div class="inner" v-if="props.isOpen">
-            <button class="close">
+        <div class="inner" v-if="props.isOpen"  @keyup.left="nextPicture('left')" @keyup.right="nextPicture('right')" @keyup.escape="TroggleModal" @keyup.tab="nextPicture('right')" >
+            <button class="close" @click="TroggleModal">
                 <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="var(--primary-color)" fill-rule="evenodd"/></svg>
             </button>
-            <img class="modalPicture"
+            <div class="carou">
+                <img class="modalPicture"
                 :src="props.path"
                 :alt="props.name">
-            <button class="left" @click="nextPicture('left')">
+            <button class="left" @click="nextPicture('left')"
+            
+            >
                 <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
 
             </button>
-            <button class="right" @click="nextPicture('right')">
+            <button class="right" @click="nextPicture('right')"
+             
+            >
                 <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
             </button>
+               <div class="thumbnails">
+                <button v-for="(item,index) in props.listThumbnail" :key="index" @click="ChangeImage(item)">
+                    <img :src="item" :alt="item" :class="[item===props.thubnail ? 'active' : '', 'thumbnail' ]" >
+                </button>
+            </div>
+            </div>
+            
         </div>
     </Teleport>
     
 </template>
 <style scoped>
+    .thumbnail:hover{
+        opacity: 60%;
+    }
+    .active:hover{
+        opacity: 40%;
+    }
+    .close{
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        background-color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }        
+    .carou{
+        position: relative;
+    }
     .modalPicture{
         width: 550px;
         height: 550px;
@@ -100,7 +134,7 @@
 
     .left , .right {
         position: absolute;
-        top: 50%;
+        top: 38%;
         width: 56px;
         height: 56px;
         background-color: var(--white);
@@ -110,11 +144,11 @@
         align-items: center;
     }
     .left{
-        right: 1rem;
+        right: -2rem;
 
     }
     .right{
-        left: 1rem;
+        left: -2rem;
     }
     .outer{
         display: none;

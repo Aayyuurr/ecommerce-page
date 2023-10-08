@@ -214,6 +214,7 @@
         margin-top: 62px;
         width: 445px;
         height: 426px;
+       
     }
      .prices{
         display: flex;
@@ -238,5 +239,6 @@
         gap:1rem
 
     }
+    
 }
 </style>

@@ -20,14 +20,16 @@
     //emits
     const emits=defineEmits<{
         (e:'delete-to-cart'):void
+        
     }>()
     //function
     function deleteItem():void{
         emits('delete-to-cart')
     }
+   
 </script>
-<template>
-    <div class="inner">
+<template >
+    <div class="inner"  >
         <div class="top">
             <h1>Cart</h1>
         </div>
@@ -196,4 +198,12 @@ h1{
     background-color: var(--white);
     box-shadow: 0px 20px 50px -20px var(--dark-grayish-blue);
 }
+    @media screen and (min-width: 500px) {
+        .inner{
+            position: absolute;
+            top: 4rem;
+            right: 1px;
+              z-index: 10;
+        }
+    }
 </style>

@@ -3,8 +3,8 @@
     import InfoCard from './components/InfoCard.vue';
     import NavBar from './components/NavBar.vue';
     import PictureMenu from './components/PictureMenu.vue';
-import PocketCard from './components/PocketCard.vue';
-import ModalCard from './components/ModalCard.vue';
+    import PocketCard from './components/PocketCard.vue';
+    import ModalCard from './components/ModalCard.vue';
     import {  PictureLinkProps , InfoCardProps} from './types';
     import { computed, ref } from 'vue';
     //types
@@ -34,7 +34,7 @@ import ModalCard from './components/ModalCard.vue';
             'thubnail':'/image-product-4-thumbnail.jpg',
         }
     ])
-    const index=ref(0)
+    const index=ref<number>(0)
     const infoItem=ref<InfoCardProps>({
         'company':'Sneaker Company',
         'title':'Fall Limited Edition Sneakers',
@@ -43,9 +43,9 @@ import ModalCard from './components/ModalCard.vue';
         'isDiscount':true,
         'discountPorcentage':50,
     })
-    const NumberCard=ref(0)
-    const ToggleCard=ref(false)
-    const ToggleModal=ref(false)
+    const NumberCard=ref<number>(0)
+    const ToggleCard=ref<boolean>(false)
+    const ToggleModal=ref<boolean>(false)
     //computed
         // console.log(PictureLinks.value[0].name)
         const AllThumbnails=computed(()=>{
@@ -80,7 +80,10 @@ import ModalCard from './components/ModalCard.vue';
         NumberCard.value=0;
     }
     const seeCard = ():void=>{
+
         ToggleCard.value=!ToggleCard.value
+        
+        
     }
     const ChangeImage = (item:string):void=>{
         const indexItem=PictureLinks.value.findIndex((element)=>{
@@ -88,13 +91,13 @@ import ModalCard from './components/ModalCard.vue';
         })
         index.value=indexItem
     }
-    
 </script>
 
 <template>
     
     <NavBar :NumberCard="NumberCard"
         @see-card="seeCard"
+      
     />
     <div class="body">
             <PictureMenu 
@@ -135,6 +138,9 @@ import ModalCard from './components/ModalCard.vue';
         :price="infoItem.originalPrice"
         :discountPorcentage="infoItem.discountPorcentage"
         @delete-to-cart="deleteItem"
+        
+
+
     />
 </template>
 
@@ -156,6 +162,7 @@ import ModalCard from './components/ModalCard.vue';
         flex-direction: row;
         align-items: center;
         /* margin: 0 auto; */
+      
     }
     }
     
