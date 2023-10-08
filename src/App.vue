@@ -15,23 +15,23 @@ import ModalCard from './components/ModalCard.vue';
     const PictureLinks =ref<PictureLinkProps[]>([
         {
             'name':'image-product-1.jpg',
-            'path':'src/assets/images/image-product-1.jpg' ,
-            'thubnail':'src/assets/images/image-product-1-thumbnail.jpg',
+            'path':'/image-product-1.jpg' ,
+            'thubnail':'/image-product-1-thumbnail.jpg',
         },
         {
             'name':'image-product-2.jpg',
-            'path':'src/assets/images/image-product-2.jpg',
-            'thubnail':'src/assets/images/image-product-2-thumbnail.jpg',
+            'path':'/image-product-2.jpg',
+            'thubnail':'/image-product-2-thumbnail.jpg',
         },
         {
             'name':'image-product-3.jpg',
-            'path':'src/assets/images/image-product-3.jpg',
-            'thubnail':'src/assets/images/image-product-3-thumbnail.jpg',
+            'path':'/image-product-3.jpg',
+            'thubnail':'/image-product-3-thumbnail.jpg',
         },
         {
             'name':'image-product-4.jpg',
-            'path':'src/assets/images/image-product-4.jpg',
-            'thubnail':'src/assets/images/image-product-4-thumbnail.jpg',
+            'path':'/image-product-4.jpg',
+            'thubnail':'/image-product-4-thumbnail.jpg',
         }
     ])
     const index=ref(0)
